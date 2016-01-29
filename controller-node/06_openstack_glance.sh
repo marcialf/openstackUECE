@@ -14,12 +14,12 @@ function assert_superuser {
 
 function create_glance_database
 {
-	mysql -u root "-p${MARIADB_PASSWORD}" < "/home/openstack/Documentos/openstackUECE/sql/glance.sql"
+	mysql -u root "-p${MARIADB_PASSWORD}" < "/home/openstack/Documentos/openstackUECE/controller-node/sql/glance.sql"
 }
 
 function register_in_keystone
 {
-	source "/home/openstack/Documentos/openstackUECE/admin-demo/admin-openrc.sh"
+	source "/home/openstack/Documentos/openstackUECE/controller-node/admin-demo/admin-openrc.sh"
 
 	keystone user-create --name glance --pass $GLANCE_PASS --email $EMAIL_GLANCE
 
@@ -42,8 +42,8 @@ function install_glance_packages
 
 function configure_glance
 {
-	cp "/home/openstack/Documentos/glance-api.conf" "/etc/glance/glance-api.conf"
-	cp "/home/openstack/Documentos/glance-registry.conf" "/etc/glance/glance-registry.conf"
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/conf/glance-api.conf" "/etc/glance/glance-api.conf"
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/conf/glance-registry.conf" "/etc/glance/glance-registry.conf"
 
 }
 
@@ -65,7 +65,7 @@ function remove_if_exists {
 
 function verify_operation
 {
-	source "/home/openstack/Documentos/openstackUECE/admin-demo/admin-openrc.sh"
+	source "/home/openstack/Documentos/openstackUECE/controller-node/admin-demo/admin-openrc.sh"
 	mkdir /tmp/images
 	wget -P /tmp/images http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img
 
@@ -78,12 +78,12 @@ function verify_operation
 function main
 {
 	assert_superuser
-	#create_glance_database
-	#register_in_keystone
-	#install_glance_packages
-	#configure_glance
-	#connect_database
-	#restart_services
+	create_glance_database
+	register_in_keystone
+	install_glance_packages
+	configure_glance
+	connect_database
+	restart_services
 	verify_operation
 }
 

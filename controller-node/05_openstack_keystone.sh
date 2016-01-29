@@ -13,7 +13,7 @@ function assert_superuser {
 
 function create_keystone_database
 {
-	mysql -u root "-p${MARIADB_PASSWORD}" < "/home/openstack/Documentos/openstackUECE/sql/keystone.sql"
+	mysql -u root "-p${MARIADB_PASSWORD}" < "/home/openstack/Documentos/openstackUECE/controller-node/sql/keystone.sql"
 	
 }
 
@@ -28,7 +28,7 @@ function install_keystone_packages {
 
 function configure_keystone
 {
-	cp "/home/openstack/Documentos/keystone.conf" "/etc/keystone/keystone.conf"	
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/conf/keystone.conf" "/etc/keystone/keystone.conf"	
 }
 
 function connect_database
@@ -38,9 +38,9 @@ function connect_database
 
 function configure_apache2
 {
-	cp "/home/openstack/Documentos/apache2.conf" "/etc/apache2/apache2.conf"
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/conf/apache2.conf" "/etc/apache2/apache2.conf"
 
-	cp "/home/openstack/Documentos/wsgi-keystone.conf" "/etc/apache2/sites-available"
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/conf/wsgi-keystone.conf" "/etc/apache2/sites-available"
 
 	ln -s "/etc/apache2/sites-available/wsgi-keystone.conf" "/etc/apache2/sites-enabled"
 
@@ -127,12 +127,12 @@ function verify_operation
 function main 
 {
 	assert_superuser
-#	create_keystone_database
-#	disable_keystone_autostart
-#	install_keystone_packages
-#	configure_keystone
-#	connect_database
-#	configure_apache2
+	create_keystone_database
+	disable_keystone_autostart
+	install_keystone_packages
+	configure_keystone
+	connect_database
+	configure_apache2
 	create_auth_user_and_role
 	create_service_and_api_entrypoint
 	verify_operation
