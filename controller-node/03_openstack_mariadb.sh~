@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MANAGEMENT_NETWORK_INTERFACE="eth0"
+MANAGEMENT_NETWORK_INTERFACE="eth1"
 DB_PASSWORD="openstack"
 
 function assert_superuser {
@@ -14,7 +14,9 @@ function install_mariadb {
 }
 
 function config_mariadb {
-	cp "/home/openstack/Documentos/openstackUECE/controller-node/conf/mysqld_openstack.cnf" "/etc/mysql/conf.d/mysqld_openstack.cnf"
+	#IP=$(ip -f inet addr show $MANAGEMENT_NETWORK_INTERFACE | grep inet | awk {'print $2'} | cut -d/ -f1)	
+	#sed -i'' -e"s/BIND_ADDRESS_PLACE/$IP/" "temp/mysqld_openstack.cnf"
+	cp "/home/stack/mysqld_openstack.cnf" "/etc/mysql/conf.d/mysqld_openstack.cnf"
 }
 
 function main {
