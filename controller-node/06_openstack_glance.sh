@@ -21,7 +21,7 @@ function register_in_keystone
 {
 	source "/home/openstack/Documentos/openstackUECE/controller-node/admin-demo/admin-openrc.sh"
 
-	keystone user-create --name glance --pass $GLANCE_PASS --email $EMAIL_GLANCE
+	keystone user-create --name glance --pass $KEYSTONE_USER_GLANCE_PASSWORD --email $EMAIL_GLANCE
 
 	keystone user-role-add --user glance --tenant service --role admin
 
