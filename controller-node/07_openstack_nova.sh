@@ -78,7 +78,7 @@ function main
 	install_nova_packages
 	configure_nova
 	connect_database
-#	restart_services
+	restart_services
 }
 
 main
