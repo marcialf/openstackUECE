@@ -11,3 +11,12 @@ function verify_operation
 	nova endpoints
 	nova image-list
 }
+
+function main
+{
+	assert_superuser
+	veritfy_operation
+}
+
+main
+
