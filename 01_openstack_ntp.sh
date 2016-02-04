@@ -24,8 +24,8 @@ function main {
 	assert_superuser
 	apt-get install ntp -y
 	[[ -f "/var/lib/ntp/ntp.conf.dhcp" ]] && rm "/var/lib/ntp/ntp.conf.dhcp"
-	[[ "$(hostname)" == "controller" ]] && config_ntp_server		
-	[[ "$(hostname)" == "compute1" ]] && config_ntp_client
+	[[ "$(hostname)" == "openstack" ]] && config_ntp_server		
+	[[ "$(hostname)" == "stack" ]] && config_ntp_client
 	service ntp restart
 }
 
