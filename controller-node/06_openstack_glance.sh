@@ -37,7 +37,7 @@ function register_in_keystone
 
 function install_glance_packages
 {
-	apt-get install glance python-glanceclient
+	apt-get install -y glance python-glanceclient
 }
 
 function configure_glance
