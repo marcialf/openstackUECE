@@ -6,7 +6,7 @@ function assert_superuser {
 
 
 function install_nova_packages {
-	apt-get install nova-compute sysfsutils
+	apt-get install -y nova-compute sysfsutils
 	apt-get upgrade nova-compute sysfsutils
 }
 
