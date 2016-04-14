@@ -15,7 +15,7 @@ function verify_operation
 function main
 {
 	assert_superuser
-	veritfy_operation
+	verify_operation
 }
 
 main
