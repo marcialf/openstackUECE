@@ -13,3 +13,4 @@ function main
 	apt-get install -y upgrade && apt-get install dist-upgrade
 }
 
+main
