@@ -9,8 +9,7 @@ function assert_superuser {
 function main
 {
 	assert_superuser
-	apt-get install -y ssh && apt-get install git && apt-get update
-	apt-get install -y upgrade && apt-get install dist-upgrade
+	apt-get install -y upgrade && apt-get install -y dist-upgrade
 }
 
 main

@@ -44,12 +44,12 @@ function install_network_components
 
 function configure_neutron
 {
-	cp "/home/openstack/Documentos/openstackUECE/controller-node/conf/neutron.conf" "/etc/neutron/neutron.conf"
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/neutron/conf/neutron.conf" "/etc/neutron/neutron.conf"
 }
 
 function configure_modular_layer
 {
-	cp "/home/openstack/Documentos/openstackUECE/controller-node/conf/ml2_conf.ini" "/etc/neutron/plugins/ml2/ml2_conf.ini"
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/neutron/conf/ml2_conf.ini" "/etc/neutron/plugins/ml2/ml2_conf.ini"
 }
 
 function verify_operation
