@@ -1,8 +1,16 @@
 #!/bin/sh
 
+function configure_nova
+{
+        cp "/home/openstack/Documentos/openstackUECE/controller-node/neutron/co$
+}
+
+
 function main
 {
+	configure_nova
 	service nova-api restart
+	
 }
 
 main

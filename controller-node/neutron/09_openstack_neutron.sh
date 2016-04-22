@@ -54,11 +54,6 @@ function configure_modular_layer
 	cp "/home/openstack/Documentos/openstackUECE/controller-node/neutron/conf/ml2_conf.ini" "/etc/neutron/plugins/ml2/ml2_conf.ini"
 }
 
-function configure_nova
-{
-	cp "/home/openstack/Documentos/openstackUECE/controller-node/neutron/conf/nova.conf" "/etc/nova/nova.conf"
-}
-
 function connect_database
 {
 	su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
@@ -92,7 +87,6 @@ function main
 	#install_network_components
 	configure_neutron
 	configure_modular_layer
-	configure_nova
 	connect_database	
 	restart_services
 	verify_operation
