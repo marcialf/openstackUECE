@@ -15,25 +15,25 @@ function assert_superuser
 
 function create_neutron_database 
 {	
-	#cp "templates/nova.sql" "temp/nova.sql"	
-	#sed -i'' -e"s/NOVA_DBPASS/$NOVA_DB_PASSWORD/" "temp/nova.sql"
 	mysql -u root "-p${MARIADB_PASSWORD}" < "/home/openstack/Documentos/openstackUECE/controller-node/sql/neutron.sql"
 }
 
 function register_in_keystone
 {
-	 source "/home/openstack/Documentos/openstackUECE/controller-node/admin-demo/admin-openrc.sh"
+	source "/home/openstack/Documentos/openstackUECE/controller-node/admin-demo/admin-openrc.sh"
 	
-	openstack user create --password-prompt neutron  $KEYSTONE_USER_NEUTRON_PASSWORD
+	keystone user-create --name neutron --pass $KEYSTONE_USER_NEUTRON_PASSWORD --email $EMAIL_NEUTRON
 
-	openstack role add --project service --user neutron admin
+	keystone user-role-add --user neutron --tenant service --role admin
 
-	openstack service create --name neutron --description "OpenStack Networking" network
+	keystone service-create --name neutron --type network --description "OpenStack Network Service"
 
-	openstack endpoint create --publicurl http://controller:9696 \
-		--adminurl http://controller:9696 \
-		--internalurl http://controller:9696 \
-		--region RegionOne network
+	keystone endpoint-create \
+	  --service-id $(keystone service-list | awk '/ image / {print $2}') \
+	  --publicurl http://controller:9696 \
+	  --internalurl http://controller:9696 \
+	  --adminurl http://controller:9696 \
+	  --region regionOne
 }
 
 function install_network_components
@@ -45,6 +45,8 @@ function install_network_components
 function configure_neutron
 {
 	cp "/home/openstack/Documentos/openstackUECE/controller-node/neutron/conf/neutron.conf" "/etc/neutron/neutron.conf"
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/neutron/conf/nova.conf" "/etc/nova/nova.conf"
+
 }
 
 function configure_modular_layer
@@ -52,19 +54,32 @@ function configure_modular_layer
 	cp "/home/openstack/Documentos/openstackUECE/controller-node/neutron/conf/ml2_conf.ini" "/etc/neutron/plugins/ml2/ml2_conf.ini"
 }
 
-function verify_operation
+function configure_nova
 {
-	source "/home/openstack/Documentos/openstackUECE/controller-node/admin-demo/admin-openrc.sh"
-	neutron ext-list
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/neutron/conf/nova.conf" "/etc/nova/nova.conf"
 }
 
-function finalize_installation
+function connect_database
 {
 	su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
 }
 
+function restart_services
+{
+	service nova-api restart
+	service nova-scheduler restart
+	service nova-conductor restart
+	service neutron-server restart
+        remove_if_exists "/var/lib/glance/glance.sqlite"
+}
+
+function remove_if_exists {
+        [[ -f "$1" ]] && rm -f "$1"
+}
+
 function verify_operation
 {
+	#source "/home/openstack/Documentos/openstackUECE/controller-node/admin-demo/admin-openrc.sh"
 	neutron ext-list
 }
 
@@ -73,13 +88,13 @@ function main
 	assert_superuser
 	create_neutron_database
 	source "/home/openstack/Documentos/openstackUECE/controller-node/admin-demo/admin-openrc.sh"
-	register_in_keystone
-	install_network_components
-	#configure neutron
-	#configure_modular_layer
-	#finalize_installation
-	#service nova-api restart
-	#service neutron-server restart
-	#verify_operation
+	#register_in_keystone
+	#install_network_components
+	configure_neutron
+	configure_modular_layer
+	configure_nova
+	connect_database	
+	restart_services
+	verify_operation
 }
 main

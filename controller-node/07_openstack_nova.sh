@@ -40,11 +40,10 @@ function install_nova_packages
 
 	apt-get install -y novnc
 
-<<<<<<< HEAD
+
 #	dpkg -i "/home/openstack/Documentos/openstackUECE/nova-novncproxy_2015.1.2-0ubuntu2~cloud0_all.deb"
-=======
 	dpkg -i "/home/openstack/Documentos/openstackUECE/nova-novncproxy_2015.1.3-0ubuntu1_all.deb"
->>>>>>> b2746818f679aa82d2f95ea0f60d0fb5f72999bb
+
 }
 
 function configure_nova
@@ -77,9 +76,9 @@ function restart_services
 function main
 {
 	assert_superuser
-#	create_nova_database
-#	register_in_keystone
-#	install_nova_packages
+	create_nova_database
+	register_in_keystone
+	install_nova_packages
 	configure_nova
 	connect_database
 	restart_services

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+function main
+{
+	service nova-api restart
+}
+
+main
