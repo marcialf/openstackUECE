@@ -48,7 +48,7 @@ function install_nova_packages
 
 function configure_nova
 {
-	cp "/home/openstack/Documentos/openstackUECE/controller-node/conf/nova.conf" "/etc/nova/nova.conf"
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/conf2/nova.conf" "/etc/nova/nova.conf"
 }
 
 function connect_database
@@ -76,11 +76,11 @@ function restart_services
 function main
 {
 	assert_superuser
-	create_nova_database
-	register_in_keystone
-	install_nova_packages
-	configure_nova
-	connect_database
+#	create_nova_database
+#	register_in_keystone
+#	install_nova_packages
+#	configure_nova
+#	connect_database
 	restart_services
 }
 
