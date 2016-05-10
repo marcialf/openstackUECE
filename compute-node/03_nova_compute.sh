@@ -29,7 +29,7 @@ function main
 {
 	assert_superuser
 	install_nova_packages
-	configure_nova_packages
+#	configure_nova_packages
 	restart_services
 }
 
