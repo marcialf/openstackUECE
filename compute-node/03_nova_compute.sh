@@ -12,7 +12,7 @@ function install_nova_packages {
 
 function configure_nova_packages
 {
-	cp "/home/stack/Documentos/openstackUECE/compute-node/nova.conf" "/etc/nova/nova.conf"
+	cp "/home/stack/Documentos/openstackUECE/compute-node/conf/nova.conf" "/etc/nova/nova.conf"
 }
 
 function restart_services
@@ -29,7 +29,7 @@ function main
 {
 	assert_superuser
 	install_nova_packages
-#	configure_nova_packages
+	configure_nova_packages
 	restart_services
 }
 

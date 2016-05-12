@@ -1,7 +1,7 @@
-127.0.0.1	localhost
-#127.0.1.1	stack-PowerEdge-R620
-10.129.64.51	controller
-10.129.64.61	compute1
+#127.0.0.1	localhost
+127.0.1.1	stack-PowerEdge-R620
+10.129.64.11	controller
+10.129.64.51	compute1
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
