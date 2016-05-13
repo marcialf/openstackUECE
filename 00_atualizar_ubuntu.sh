@@ -10,6 +10,7 @@ function edit_network
 	cp "/home/stack/Documentos/openstackUECE/compute-node/interfaces" "/etc/network/interfaces"
 	cp "/home/cinder/Documentos/openstackUECE/storage-node/interfaces" "/etc/network/interfaces"
 	cp "/home/swift/Documentos/openstackUECE/object-storage-node/node-1/interfaces" "/etc/network/interfaces"
+	cp "/home/swift2/Documentos/openstackUECE/object-storage-node/node-2/interfaces" "/etc/network/interfaces"
 
 
 }
@@ -20,6 +21,7 @@ function copy_hosts
 	cp "/home/stack/Documentos/openstackUECE/compute-node/hosts" "/etc/hosts"
 	cp "/home/cinder/Documentos/openstackUECE/storage-node/hosts" "/etc/hosts"
 	cp "/home/swift/Documentos/openstackUECE/object-storage-node/node-1/hosts" "/etc/hosts"
+	cp "/home/swift2/Documentos/openstackUECE/object-storage-node/node-2/hosts" "/etc/hosts"
 
 }
 
