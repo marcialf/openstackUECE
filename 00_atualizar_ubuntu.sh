@@ -8,6 +8,7 @@ function edit_network
 {
 	cp "/home/openstack/Documentos/openstackUECE/controller-node/interfaces" "/etc/network/interfaces"
 	cp "/home/stack/Documentos/openstackUECE/compute-node/interfaces" "/etc/network/interfaces"
+	cp "/home/cinder/Documentos/openstackUECE/storage-node/interfaces" "/etc/network/interfaces"
 
 
 }
@@ -16,7 +17,8 @@ function copy_hosts
 {
 	cp "/home/openstack/Documentos/openstackUECE/controller-node/hosts" "/etc/hosts"
 	cp "/home/stack/Documentos/openstackUECE/compute-node/hosts" "/etc/hosts"
-	
+	cp "/home/cinder/Documentos/openstackUECE/storage-node/hosts" "/etc/hosts"
+
 }
 
 function main
