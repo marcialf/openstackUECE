@@ -1,0 +1,13 @@
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+        address 10.129.64.91
+        netmask 255.255.255.0
+        network 10.129.64.0
+        broadcast 10.129.64.255 
+        gateway 10.129.64.254
+        dns-nameservers 200.129.22.34 200.129.22.58 200.129.22.78
+        dns-search uece.br
