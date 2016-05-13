@@ -6,7 +6,7 @@ function assert_superuser {
 
 function edit_network
 {
-	cp "/home/openstack/Documentos/opentstackUECE/controller-node/interfaces" "/etc/network/interfaces"
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/interfaces" "/etc/network/interfaces"
 	cp "/home/stack/Documentos/openstackUECE/compute-node/interfaces" "/etc/network/interfaces"
 
 
@@ -14,7 +14,7 @@ function edit_network
 
 function copy_hosts
 {
-	cp "/home/openstack/Documentos/openstackUECE/compute-node/hosts" "/etc/hosts"
+	cp "/home/openstack/Documentos/openstackUECE/controller-node/hosts" "/etc/hosts"
 	cp "/home/stack/Documentos/openstackUECE/compute-node/hosts" "/etc/hosts"
 	
 }
@@ -25,7 +25,7 @@ function main
 	apt-get -y upgrade && apt-get -y dist-upgrade
 	edit_network
 	copy_hosts	
-	nano /etc/network/interfaces
+#	nano /etc/network/interfaces
 
 }
 
