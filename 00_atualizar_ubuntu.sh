@@ -1,15 +1,32 @@
 #!/bin/bash
 
-NTP_SERVER="ntp.ubuntu.com"
-
 function assert_superuser {
 	[[ "$(id -u)" != "0" ]] && echo "You need to be 'root' dude." 1>&2 && exit 1
+}
+
+function edit_network
+{
+	cp "/home/openstack/Documentos/opentstackUECE/controller-node/interfaces" "/etc/network/interfaces"
+	cp "/home/stack/Documentos/openstackUECE/compute-node/interfaces" "/etc/network/interfaces"
+
+
+}
+
+function copy_hosts
+{
+	cp "/home/openstack/Documentos/openstackUECE/compute-node/hosts" "/etc/hosts"
+	cp "/home/stack/Documentos/openstackUECE/compute-node/hosts" "/etc/hosts"
+	
 }
 
 function main
 {
 	assert_superuser
-	apt-get install -y upgrade && apt-get install -y dist-upgrade
+	apt-get -y upgrade && apt-get -y dist-upgrade
+	edit_network
+	copy_hosts	
+	nano /etc/network/interfaces
+
 }
 
 main
