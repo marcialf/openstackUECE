@@ -26,7 +26,7 @@ function main
 	edit_network
 	copy_hosts	
 #	nano /etc/network/interfaces
-
+	ufw disable
 }
 
 main
