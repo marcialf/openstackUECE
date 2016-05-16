@@ -33,7 +33,7 @@ function configure_swift
 function main
 {
 	assert_superuser
-#	install_packages
+	install_packages
 	configure_swift
 	chown -R swift:swift /srv/node
 	mkdir -p /var/cache/swift
