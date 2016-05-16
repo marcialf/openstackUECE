@@ -22,18 +22,18 @@ function install_packages
 
 function configure_swift
 {
-	cp "/home/swift/Documentos/openstackUECE/object-storage-node/node-1/conf/account-server.conf" \
+	cp "/home/swift2/Documentos/openstackUECE/object-storage-node/node-2/conf/account-server.conf" \
 		"/etc/swift/account-server.conf"
-	cp "/home/swift/Documentos/openstackUECE/object-storage-node/node-1/conf/container-server.conf" \
+	cp "/home/swift2/Documentos/openstackUECE/object-storage-node/node-2/conf/container-server.conf" \
 		"/etc/swift/containar-server.conf"
-	cp "/home/swift/Documentos/openstackUECE/object-storage-node/node-1/conf/object-server.conf" \
+	cp "/home/swift2/Documentos/openstackUECE/object-storage-node/node-2/conf/object-server.conf" \
 		"/etc/swift/object-server.conf"
 }
 
 function main
 {
 	assert_superuser
-	install_packages
+#	install_packages
 	configure_swift
 	chown -R swift:swift /srv/node
 	mkdir -p /var/cache/swift
