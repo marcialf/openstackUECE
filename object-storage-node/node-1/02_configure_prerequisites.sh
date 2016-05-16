@@ -6,18 +6,23 @@ function assert_superuser {
 
 function configure_swift
 {
-	cp "/home/swift/Documentos/openstackUECE/conf/fstab" "/etc/fstab"
-	cp "/home/swift/Documentos/openstackUECE/conf/rsyncd.conf" "/etc/rsyncd.conf"
-	cp "/home/swift/Documentos/openstackUECE/conf/rsync" "/etc/default/rsync"
+	cp "/home/swift/Documentos/openstackUECE/object-storage-node/conf/fstab" "/etc/fstab"
+	cp "/home/swift/Documentos/openstackUECE/object-storage-node/conf/rsyncd.conf" "/etc/rsyncd.conf"
+	cp "/home/swift/Documentos/openstackUECE/object-storage-node/conf/rsync" "/etc/default/rsync"
 }
 
+function install_swift_packages
+{
+	apt-get install -y xfsprogs rsync
+
+}
 
 function main
 {
 	assert_superuser
-	apt-get instal -y install xfsprogs rsync
-	mkfs.xfs /dev/sdb1
-	mkfs.xfs /dev/sdc1
+	install_swift_packages
+	mkfs.xfs -f /dev/sdb1
+	mkfs.xfs -f /dev/sdc1
 
 	mkdir -p /srv/node/sdb1
 	mkdir -p /srv/node/sdc1
