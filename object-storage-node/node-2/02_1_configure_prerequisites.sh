@@ -15,9 +15,9 @@ function configure_swift
 function main
 {
         assert_superuser
-#        apt-get install -y xfsprogs rsync
-#        mkfs.xfs /dev/sdb1
-#        mkfs.xfs /dev/sdc1
+        apt-get install -y xfsprogs rsync
+        mkfs.xfs /dev/sdb1
+        mkfs.xfs /dev/sdc1
 
         mkdir -p /srv/node/sdb1
         mkdir -p /srv/node/sdc1
